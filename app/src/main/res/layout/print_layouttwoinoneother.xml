@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:clipChildren="false"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollview1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="96.25mm"
+            android:layout_height="150mm"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="94mm"
+                android:layout_marginBottom="0mm"
+                android:orientation="vertical"
+                android:paddingBottom="0mm">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="17mm"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="0.5mm"
+                    android:background="#fff"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/twotext"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="#000"
+                        android:textSize="5mm"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#000"
+                    android:orientation="vertical"
+                    android:padding="1mm">
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#fff">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#000">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="18mm"
+                                android:layout_marginBottom="0.5mm"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/twotext2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="#fff"
+                                        android:paddingLeft="1mm"
+                                        android:text="货运单号/AWB NO"
+                                        android:textColor="#000"
+                                        android:textSize="3mm" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/aviationmasterno"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="#fff"
+                                        android:gravity="center"
+                                        android:textColor="#000"
+                                        android:textSize="7mm" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="10mm"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="22mm"
+                                    android:layout_height="match_parent"
+                                    android:background="#000"
+                                    android:orientation="vertical"
+                                    android:paddingRight="0.5mm">
+
+                                    <TextView
+                                        android:id="@+id/twotext3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="#fff"
+                                        android:paddingLeft="1mm"
+                                        android:text="件数"
+                                        android:textColor="#000"
+                                        android:textSize="3mm"
+                                        android:gravity="center"/>
+
+                                    <TextView
+                                        android:id="@+id/bsorderqty"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="#fff"
+                                        android:gravity="center"
+                                        android:textColor="#000"
+                                        android:textSize="4mm"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="22mm"
+                                    android:layout_height="match_parent"
+                                    android:background="#000"
+                                    android:orientation="vertical"
+                                    android:paddingRight="0.5mm">
+
+                                    <TextView
+                                        android:id="@+id/twotext4"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="#fff"
+                                        android:paddingLeft="1mm"
+                                        android:text="重量（KG）"
+                                        android:textColor="#000"
+                                        android:textSize="3mm"
+                                        android:gravity="center"/>
+
+                                    <TextView
+                                        android:id="@+id/bsorderwt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="#fff"
+                                        android:gravity="center"
+                                        android:textColor="#000"
+                                        android:textSize="4mm"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="#000"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/twotext5"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="#fff"
+                                        android:paddingLeft="1mm"
+                                        android:text="始发站 至 到达站"
+                                        android:textColor="#000"
+                                        android:textSize="3mm"
+                                        android:gravity="center"/>
+
+                                    <TextView
+                                        android:id="@+id/airlinenumber"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="#fff"
+                                        android:gravity="center"
+                                        android:textColor="#000"
+                                        android:textSize="4mm"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="14mm"
+                                android:layout_weight="1"
+                                android:background="#000"
+                                android:orientation="vertical"
+                                android:paddingTop="0.5mm"
+                                android:paddingBottom="0.5mm">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/departure"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="#fff"
+                                        android:gravity="center"
+                                        android:textColor="#000"
+                                        android:textSize="6mm" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="20mm"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/imageviewbarcodetwo1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:paddingTop="0.5mm"
+                                    android:src="@drawable/android_logo" />
+
+                                <TextView
+                                    android:id="@+id/productnotwo1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="#000"
+                                    android:textSize="3mm"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                        </TableRow>
+
+                    </TableLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="96.25mm"
+                android:layout_height="68mm"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="17mm"
+                    android:layout_marginTop="2mm"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="75mm"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="1mm"
+                            android:orientation="horizontal"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"/>
+
+                            <TextView
+                                android:id="@+id/twotext34"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="#000"
+                                android:textSize="3mm" />
+
+                            <TextView
+                                android:id="@+id/texttwo35"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000"
+                                android:textSize="3mm" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageviewqrcodetwo2"
+                            android:layout_width="match_parent"
+                            android:layout_height="17mm"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:src="@drawable/android_logo" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="96.25mm"
+                    android:layout_height="wrap_content"
+                    android:background="#000"
+                    android:orientation="vertical"
+                    android:padding="1mm">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="40mm"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#000"
+                            android:orientation="horizontal"
+                            android:paddingRight="0.5mm"
+                            android:paddingBottom="0.5mm">
+
+                            <LinearLayout
+                                android:layout_width="5mm"
+                                android:layout_height="match_parent"
+                                android:background="#fff"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="5mm"
+                                    android:layout_height="match_parent"
+                                    android:background="#000"
+                                    android:orientation="vertical"
+                                    android:paddingRight="0.5mm">
+
+                                    <TextView
+                                        android:id="@+id/twotext123"
+                                        android:layout_width="5mm"
+                                        android:layout_height="match_parent"
+                                        android:background="#fff"
+                                        android:gravity="center"
+                                        android:text="寄方"
+                                        android:textColor="#000"
+                                        android:textSize="3mm"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="40mm"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="#fff"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/issuepartycontacttwo1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="3mm"
+                                        android:layout_weight="1"
+                                        android:textColor="#000"
+                                        android:textSize="3mm" />
+
+                                    <TextView
+                                        android:id="@+id/issuepartyteltwo1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:textColor="#000"
+                                        android:textSize="3mm" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/issuepartycitytwo1"
+                                        android:layout_width="13mm"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:padding="2dp"
+                                        android:textColor="#000"
+                                        android:textSize="3.7mm"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/issuepartyaddrtwo1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:textColor="#000"
+                                        android:textSize="2.8mm" />
+
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="56.25mm"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="15mm"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="5mm"
+                                    android:layout_height="match_parent"
+                                    android:background="#000"
+                                    android:orientation="horizontal"
+                                    android:paddingRight="0.5mm">
+
+                                    <TextView
+                                        android:id="@+id/twotext56"
+                                        android:layout_width="5mm"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="#fff"
+                                        android:gravity="center"
+                                        android:text="收方"
+                                        android:textColor="#000"
+                                        android:textSize="3mm"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/receivepartycontactnametwo1"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginLeft="3mm"
+                                            android:layout_weight="1"
+                                            android:textColor="#000"
+                                            android:textSize="3mm" />
+
+                                        <TextView
+                                            android:id="@+id/receivepartyphonetwo1"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:textColor="#000"
+                                            android:textSize="3mm" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/receivepartycitytwo1"
+                                            android:layout_width="13mm"
+                                            android:layout_height="match_parent"
+                                            android:gravity="center"
+                                            android:padding="2dp"
+                                            android:textColor="#000"
+                                            android:textSize="3.7mm"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:id="@+id/receivePartyAddr1two1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:textColor="#000"
+                                            android:textSize="2.8mm" />
+
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="7mm"
+                                android:layout_weight="1"
+                                android:background="#000"
+                                android:orientation="horizontal"
+                                android:paddingTop="0.5mm"
+                                android:paddingBottom="0.5mm">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:background="#000"
+                                    android:orientation="vertical"
+                                    android:paddingRight="0.5mm">
+
+                                    <TextView
+                                        android:id="@+id/twotext67"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:background="#fff"
+                                        android:gravity="center"
+                                        android:paddingLeft="1mm"
+                                        android:paddingRight="1mm"
+                                        android:text="订单号"
+                                        android:textColor="#000"
+                                        android:textSize="3mm" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="#fff"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/omsnotwo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:paddingLeft="1mm"
+                                        android:textColor="#000"
+                                        android:textSize="3mm" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="5mm"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="47mm"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:paddingRight="0.5mm">
+
+                            <TextView
+                                android:id="@+id/twotext90"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:background="#fff"
+                                android:paddingLeft="1mm"
+                                android:text="件数"
+                                android:textColor="#000"
+                                android:textSize="3mm"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/bsorderqty1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="#fff"
+                                android:gravity="center"
+                                android:textColor="#000"
+                                android:textSize="4mm"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/twotext91"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:background="#fff"
+                                android:paddingLeft="1mm"
+                                android:text="重量（KG）"
+                                android:textColor="#000"
+                                android:textSize="3mm"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/bsorderwt1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="#fff"
+                                android:gravity="center"
+                                android:textColor="#000"
+                                android:textSize="4mm"
+                                android:textStyle="bold"
+                                />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="20mm"
+                        android:layout_weight="1"
+                        android:background="#000"
+                        android:orientation="vertical"
+                        android:paddingTop="0.5mm">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#fff"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/twotext92"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:text="限时24"
+                                    android:textColor="#000"
+                                    android:textSize="3mm" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:paddingBottom="0.5mm">
+
+                                <ImageView
+                                    android:id="@+id/imageviewbarcodetwo3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:src="@drawable/android_logo" />
+
+                                <TextView
+                                    android:id="@+id/productnotwo3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:textColor="#000"
+                                    android:textStyle="bold"
+                                    android:textSize="3mm" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

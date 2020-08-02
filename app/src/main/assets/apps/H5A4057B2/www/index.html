@@ -1,0 +1,17 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"><script type=text/javascript src="https://webapi.amap.com/maps?v=1.4.15&key=b9e9172860201c71b3f7a506dfb0865d&plugin=AMap.Driving,AMap.Geocoder,AMap.ToolBar"></script><script type=text/javascript src="http://api.map.baidu.com/api?v=2.0&ak=dXzhcE0CYUPxEpmScrbeBcQm6utviUqX"></script><title>tms</title><script>// 750 -> 1rem = 50px   大于750 -> 1rem = 100px
+	    (function (doc, win) {
+	        var docEl = doc.documentElement,
+	                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+	                recalc = function () {
+	                    var clientWidth = docEl.clientWidth;
+	                    if (!clientWidth) return;
+	                    if(clientWidth>=750){
+	                        docEl.style.fontSize = 50 * (clientWidth / 750) + 'px';
+	                    }else{
+	                        docEl.style.fontSize = 50 * (clientWidth / 750) + 'px';
+	                    }
+	                };
+	        if (!doc.addEventListener) return;
+	        win.addEventListener(resizeEvt, recalc, false);
+	        doc.addEventListener('DOMContentLoaded', recalc, false);
+	    })(document, window);</script><link href=./css/app.30bf1338795a72efb92fe5e267b8f18c.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=./js/manifest.5ebdb86dbeef19313db4.js></script><script type=text/javascript src=./js/vendor.2efa65183ebe1cf59176.js></script><script type=text/javascript src=./js/app.bc9d3ca419cba025ea40.js></script></body></html>

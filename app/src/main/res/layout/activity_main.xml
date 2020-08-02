@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/acitvity_mainAcitivity"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/track_bg"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.activity.MainActivity">
+
+    <com.kaidongyuan.app.kdydriver.ui.widget.IsScrollableViewPager
+        android:id="@+id/viewPager_mainActivity"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        ></com.kaidongyuan.app.kdydriver.ui.widget.IsScrollableViewPager>
+
+    <android.support.design.widget.TabLayout
+        android:background="@color/track_text"
+        android:id="@+id/tablayout_mainAcitivity"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        app:tabIndicatorColor="@color/transparent"
+        app:tabSelectedTextColor="@color/yb_yellow"
+        app:tabTextColor="@color/yb_light_green"
+        app:tabMode="fixed"
+        app:tabBackground="@drawable/tab_bg_selector"
+        app:tabIndicatorHeight="0dp"
+        app:tabGravity="fill"
+        >
+
+    </android.support.design.widget.TabLayout>
+
+
+
+</RelativeLayout>

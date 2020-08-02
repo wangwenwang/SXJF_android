@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="#5965D8"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    >
+
+    <TextView
+        android:id="@+id/tv_headview_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffffff"
+
+        android:textStyle="bold" />
+
+
+    <ImageView
+        android:id="@+id/iv_headview_goback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@null"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:src="@drawable/back" />
+
+    <ImageView
+        android:id="@+id/iv_show_menu"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@null"
+        android:padding="10dp"
+        android:visibility="visible"
+        android:src="@drawable/icon_open_sliding" />
+
+
+
+    <TextView
+        android:id="@+id/managment"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="搜索"
+        android:textColor="#fff"
+        android:visibility="gone"
+        android:textSize="18sp" />
+    <EditText
+        android:id="@+id/ed_headview_center"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@id/iv_headview_goback"
+        android:layout_toLeftOf="@id/managment"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:ellipsize="end"
+        android:visibility="gone"
+        />
+</RelativeLayout>

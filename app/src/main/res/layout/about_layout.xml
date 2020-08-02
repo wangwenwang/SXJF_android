@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ll_whole"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true">
+
+    <com.kaidongyuan.app.basemodule.widget.SlidingTitleView
+        android:id="@+id/about_us_title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.kaidongyuan.app.basemodule.widget.SlidingTitleView>
+
+    <WebView
+        android:id="@+id/about_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:scrollbars="none" />
+
+</LinearLayout>
