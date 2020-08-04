@@ -65,7 +65,8 @@
         <activity
             android:name=".ui.activity.hbx"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:resizeableActivity="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -84,7 +85,8 @@
         <activity
             android:name=".ui.activity.ScanActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|mcc|mnc|fontScale|keyboard"
-            android:screenOrientation="portrait" /> <!-- com.kaidongyuan.app.kdydriver -->
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Transparent" /> <!-- com.kaidongyuan.app.kdydriver -->
         <!-- 百度 -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
