@@ -1,1 +1,2 @@
+include ':zxing-android-embedded'
 include ':app', ':basemodule', ':LibMarsdaemon', ':PushSDK'
