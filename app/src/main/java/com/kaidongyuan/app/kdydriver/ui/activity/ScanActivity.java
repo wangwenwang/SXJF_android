@@ -62,7 +62,6 @@ public class ScanActivity extends CaptureActivity {
         capture.initializeFromIntent(getIntent(), savedInstanceState);
 
 
-
         mWebView = (WebView) findViewById((R.id.lmwebview));
         mWebView.getSettings().setTextZoom(100);
         mWebView.setWebViewClient(new WebViewClient() {
@@ -78,7 +77,7 @@ public class ScanActivity extends CaptureActivity {
 
             // js拔打电话
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view,String url) {
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 Log.d("LM", "------------------------: ");
 
                 if (url.startsWith("mailto:") || url.startsWith("geo:") || url.startsWith("tel:")) {
@@ -206,7 +205,7 @@ public class ScanActivity extends CaptureActivity {
         }
 
         @JavascriptInterface
-        public void callAndroid( String exceName, String inputName) {
+        public void callAndroid(String exceName, String inputName) {
 
             ScanActivity.this.inputName = inputName;
 
@@ -216,7 +215,7 @@ public class ScanActivity extends CaptureActivity {
                     @Override
                     public void run() {
 
-                        String  url = "javascript:VersionShow('" + Tools.getVerName(mContext) + "')";
+                        String url = "javascript:VersionShow('" + Tools.getVerName(mContext) + "')";
                         ScanActivity.mWebView.loadUrl(url);
                         Log.d("LM", url);
 
@@ -232,16 +231,16 @@ public class ScanActivity extends CaptureActivity {
                 SharedPreferences readLatLng = mContext.getSharedPreferences("CurrLatLng", MODE_MULTI_PROCESS);
 
                 final String address = readLatLng.getString("w_address", "");
-                final float lng = readLatLng.getFloat("w_lng",0f);
+                final float lng = readLatLng.getFloat("w_lng", 0f);
                 final float lat = readLatLng.getFloat("w_lat", 0f);
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
 
-                        JSONObject lngObject =  new JSONObject();
-                        lngObject.put("lng",lng);
-                        lngObject.put("lat",lat);
+                        JSONObject lngObject = new JSONObject();
+                        lngObject.put("lng", lng);
+                        lngObject.put("lat", lat);
 
                         String url = "javascript:SetCurrAddress('" + lngObject + "')";
 
@@ -276,32 +275,32 @@ public class ScanActivity extends CaptureActivity {
                             @Override
                             public void run() {
 
-                                Intent intent2=new Intent(mContext,OrderTrackActivity.class);
-                                intent2.putExtra("order_IDX",ScanActivity.this.inputName);
+                                Intent intent2 = new Intent(mContext, OrderTrackActivity.class);
+                                intent2.putExtra("order_IDX", ScanActivity.this.inputName);
                                 mContext.startActivity(intent2);
                             }
                         });
                     }
                 }.start();
-            }else if(exceName.equals("打印")){
+            } else if (exceName.equals("打印")) {
 
-                Intent intentprint=new Intent(mContext,PrintActivity.class);
-                intentprint.putExtra("omsNo",ScanActivity.this.inputName);
+                Intent intentprint = new Intent(mContext, PrintActivity.class);
+                intentprint.putExtra("omsNo", ScanActivity.this.inputName);
                 mContext.startActivity(intentprint);
 
-            }else if(exceName.equals("shein打印")){
+            } else if (exceName.equals("shein打印")) {
 
                 Log.d("LM", "shein打印");
 
-                Intent intentprint1=new Intent(mContext,PrintActivityshein.class);
-                intentprint1.putExtra("omsNo",ScanActivity.this.inputName);
+                Intent intentprint1 = new Intent(mContext, PrintActivityshein.class);
+                intentprint1.putExtra("omsNo", ScanActivity.this.inputName);
                 mContext.startActivity(intentprint1);
             }
         }
 
         //    扫码
         @JavascriptInterface
-        public void  VueSCAN() {
+        public void VueSCAN() {
 
 //            new Thread() {
 //                public void run() {
@@ -320,7 +319,7 @@ public class ScanActivity extends CaptureActivity {
         }
 
         @JavascriptInterface
-        public  void updateAPP(){
+        public void updateAPP() {
 
 //            initHandler();
 //            checkVersion();
