@@ -63,7 +63,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ui.activity.hbx"
+            android:name=".ui.activity.ScanActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:resizeableActivity="true">
@@ -82,11 +82,11 @@
             android:name=".ui.activity.PrintActivityshein"
             android:configChanges="orientation|keyboardHidden|screenSize|mcc|mnc|fontScale|keyboard"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.ScanActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize|mcc|mnc|fontScale|keyboard"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Transparent" /> <!-- com.kaidongyuan.app.kdydriver -->
+<!--        <activity-->
+<!--            android:name=".ui.activity.ScanActivity"-->
+<!--            android:configChanges="orientation|keyboardHidden|screenSize|mcc|mnc|fontScale|keyboard"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/Theme.Transparent" /> &lt;!&ndash; com.kaidongyuan.app.kdydriver &ndash;&gt;-->
         <!-- 百度 -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"

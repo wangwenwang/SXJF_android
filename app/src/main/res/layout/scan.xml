@@ -5,7 +5,7 @@
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="150dp"
         android:orientation="vertical" >
 
         <SurfaceView
@@ -31,5 +31,11 @@
         </TextView>
 
     </RelativeLayout>
+
+    <WebView
+        android:id="@+id/lmwebview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    </WebView>
 
 </LinearLayout>
