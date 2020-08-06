@@ -27,6 +27,7 @@ import com.google.zxing.client.android.BeepManager;
 import com.google.zxing.client.android.InactivityTimer;
 import com.google.zxing.client.android.Intents;
 import com.google.zxing.client.android.R;
+import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -375,7 +376,7 @@ public class CaptureManager {
 
     protected void closeAndFinish() {
         if(barcodeView.getBarcodeView().isCameraClosed()) {
-            finish();
+//            finish();
         } else {
             finishWhenClosed = true;
         }
@@ -391,10 +392,30 @@ public class CaptureManager {
         closeAndFinish();
     }
 
+    public interface ResultCallBack {
+        void callBack(int requestCode, int resultCode, Intent intent);
+    }
+
+    private ResultCallBack mResultCallBack;
+
+    public void setResultCallBack(ResultCallBack resultCallBack) {
+        this.mResultCallBack = resultCallBack;
+    }
+
     protected void returnResult(BarcodeResult rawResult) {
         Intent intent = resultIntent(rawResult, getBarcodeImagePath(rawResult));
         activity.setResult(Activity.RESULT_OK, intent);
-        closeAndFinish();
+//        closeAndFinish();
+        if (barcodeView.getBarcodeView().isCameraClosed()) {
+            if (null != mResultCallBack) {
+                mResultCallBack.callBack(IntentIntegrator.REQUEST_CODE, Activity.RESULT_OK, intent);
+            }
+            // activity.finish(); 注释掉这行
+        } else {
+            finishWhenClosed = true;
+        }
+        barcodeView.pause();
+        inactivityTimer.cancel();
     }
 
     protected void displayFrameworkBugMessageAndExit() {
