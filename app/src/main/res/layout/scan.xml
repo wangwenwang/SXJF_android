@@ -3,9 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="match_parent">
+
+    <WebView
+        android:id="@+id/lmwebview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </WebView>
+
+    <RelativeLayout
+        android:id="@+id/scan_rt"
+        android:layout_width="match_parent"
+        android:layout_height="330px"
+        android:layout_marginTop="89px"
         android:orientation="vertical" >
 
         <SurfaceView
@@ -32,10 +45,6 @@
 
     </RelativeLayout>
 
-    <WebView
-        android:id="@+id/lmwebview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-    </WebView>
+</RelativeLayout>
 
 </LinearLayout>

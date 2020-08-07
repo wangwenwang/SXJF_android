@@ -213,6 +213,14 @@ public class IntentIntegrator {
     }
 
     /**
+     * 是否连续扫码
+     */
+    public IntentIntegrator set_is_Continuous_Scan(boolean is_Continuous_Scan) {
+        addExtra(Intents.Scan.IS_CONTINUOUS_SCAN, is_Continuous_Scan);
+        return this;
+    }
+
+    /**
      * Create an scan intent with the specified options.
      *
      * @return the intent

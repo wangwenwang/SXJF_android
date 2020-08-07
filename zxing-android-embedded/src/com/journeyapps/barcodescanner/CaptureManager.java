@@ -71,6 +71,8 @@ public class CaptureManager {
 
     private boolean finishWhenClosed = false;
 
+    public boolean is_Continuous_Scan = true;
+
     private BarcodeCallback callback = new BarcodeCallback() {
         @Override
         public void barcodeResult(final BarcodeResult result) {
@@ -180,6 +182,11 @@ public class CaptureManager {
                     }
                 };
                 handler.postDelayed(runnable, intent.getLongExtra(Intents.Scan.TIMEOUT, 0L));
+            }
+
+            if (Intents.Scan.ACTION.equals(intent.getAction())) {
+                boolean continuous_scan = intent.getBooleanExtra(Intents.Scan.IS_CONTINUOUS_SCAN, true);
+                is_Continuous_Scan = continuous_scan;
             }
 
             if (intent.getBooleanExtra(Intents.Scan.BARCODE_IMAGE_ENABLED, false)) {
@@ -405,12 +412,15 @@ public class CaptureManager {
     protected void returnResult(BarcodeResult rawResult) {
         Intent intent = resultIntent(rawResult, getBarcodeImagePath(rawResult));
         activity.setResult(Activity.RESULT_OK, intent);
-//        closeAndFinish();
+        closeAndFinish();
         if (barcodeView.getBarcodeView().isCameraClosed()) {
             if (null != mResultCallBack) {
                 mResultCallBack.callBack(IntentIntegrator.REQUEST_CODE, Activity.RESULT_OK, intent);
             }
-            // activity.finish(); 注释掉这行
+            // 不是连续扫码，扫码成功后返回
+            if(!is_Continuous_Scan){
+                activity.finish();
+            }
         } else {
             finishWhenClosed = true;
         }

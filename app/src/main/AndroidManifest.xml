@@ -82,11 +82,11 @@
             android:name=".ui.activity.PrintActivityshein"
             android:configChanges="orientation|keyboardHidden|screenSize|mcc|mnc|fontScale|keyboard"
             android:screenOrientation="portrait" />
-<!--        <activity-->
-<!--            android:name=".ui.activity.ScanActivity"-->
-<!--            android:configChanges="orientation|keyboardHidden|screenSize|mcc|mnc|fontScale|keyboard"-->
-<!--            android:screenOrientation="portrait"-->
-<!--            android:theme="@style/Theme.Transparent" /> &lt;!&ndash; com.kaidongyuan.app.kdydriver &ndash;&gt;-->
+        <activity
+            android:name=".ui.activity.Scan_Single_Activity"
+            android:configChanges="orientation|keyboardHidden|screenSize|mcc|mnc|fontScale|keyboard"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Transparent" /> <!-- com.kaidongyuan.app.kdydriver -->
         <!-- 百度 -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"

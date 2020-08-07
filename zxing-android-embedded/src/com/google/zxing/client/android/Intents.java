@@ -109,6 +109,11 @@ public final class Intents {
         public static final String TIMEOUT = "TIMEOUT";
 
         /**
+         * 是否连续扫码
+         */
+        public static final String IS_CONTINUOUS_SCAN = "IS_CONTINUOUS_SCAN";
+
+        /**
          * Whether or not the orientation should be locked when the activity is first started.
          * Defaults to true.
          */
