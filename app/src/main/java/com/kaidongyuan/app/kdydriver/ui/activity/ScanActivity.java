@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,12 +39,17 @@ import static android.widget.Toast.LENGTH_LONG;
 
 public class ScanActivity extends CaptureActivity {
 
+    public static Context mContext;
+
     private CaptureManager capture;
     private DecoratedBarcodeView barcodeScannerView;
     public static WebView mWebView;
     String inputName;
     RelativeLayout scan_rt;  // 扫码控件布局
 
+    String appName;   // App名称
+    public static String local_Version;   // 本地版本号
+    public final static String ZipFileName = "dist.zip";
 
     //5.0以下使用
     private ValueCallback<Uri> uploadMessage;
@@ -58,6 +64,8 @@ public class ScanActivity extends CaptureActivity {
 
         setContentView(R.layout.scan);
 
+        mContext = this;
+
         barcodeScannerView = (DecoratedBarcodeView) findViewById(R.id.dbv_custom);
 
         capture = new CaptureManager(this, barcodeScannerView);
@@ -66,6 +74,14 @@ public class ScanActivity extends CaptureActivity {
         scan_rt = (RelativeLayout) findViewById(R.id.scan_rt);
         scan_rt.setVisibility(View.INVISIBLE);
         capture.onPause();
+
+        appName = getResources().getString(R.string.app_name);
+        try {
+            local_Version = getApplicationContext().getPackageManager().getPackageInfo(getApplicationContext().getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        Log.d("LM", "程序启动");
 
         mWebView = (WebView) findViewById((R.id.lmwebview));
         mWebView.getSettings().setTextZoom(100);
@@ -254,19 +270,13 @@ public class ScanActivity extends CaptureActivity {
                 });
             } else if (exceName.equals("导航")) {
 
-                new Thread() {
-
-                    public void run() {
-
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
 
-                                Tools.ToNavigation(ScanActivity.this.inputName, mContext, getResources().getString(R.string.app_name));
+                                Tools.ToNavigation(ScanActivity.this.inputName, mContext, appName);
                             }
                         });
-                    }
-                }.start();
 
             } else if (exceName.equals("查看路线")) {
 
