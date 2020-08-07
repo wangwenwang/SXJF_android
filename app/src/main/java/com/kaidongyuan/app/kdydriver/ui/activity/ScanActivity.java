@@ -22,6 +22,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
@@ -41,6 +42,7 @@ public class ScanActivity extends CaptureActivity {
     private DecoratedBarcodeView barcodeScannerView;
     public static WebView mWebView;
     String inputName;
+    RelativeLayout scan_rt;  // 扫码控件布局
 
 
     //5.0以下使用
@@ -61,6 +63,9 @@ public class ScanActivity extends CaptureActivity {
         capture = new CaptureManager(this, barcodeScannerView);
         capture.initializeFromIntent(getIntent(), savedInstanceState);
 
+        scan_rt = (RelativeLayout) findViewById(R.id.scan_rt);
+        scan_rt.setVisibility(View.INVISIBLE);
+        capture.onPause();
 
         mWebView = (WebView) findViewById((R.id.lmwebview));
         mWebView.getSettings().setTextZoom(100);
@@ -302,20 +307,53 @@ public class ScanActivity extends CaptureActivity {
         @JavascriptInterface
         public void VueSCAN() {
 
-//            new Thread() {
-//                public void run() {
-//                    Looper.prepare();//增加部分
-//                    IntentIntegrator integator = new IntentIntegrator(ScanActivity.this);
-//                    integator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
-//                    integator.setPrompt("请扫描");
-//                    integator.setCameraId(0);
-//                    integator.setBeepEnabled(true); //扫描成功的「哔哔」声，默认开启
-//                    integator.setBarcodeImageEnabled(false);
-//                    integator.setCaptureActivity(ScanActivity.class);
-//                    integator.initiateScan();
-//
-//                }
-//            }.start();
+            new Thread() {
+                public void run() {
+                    Looper.prepare();//增加部分
+                    IntentIntegrator integator = new IntentIntegrator(ScanActivity.this);
+                    integator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
+                    integator.setPrompt("请扫描");
+                    integator.setCameraId(0);
+                    integator.setBeepEnabled(true); //扫描成功的「哔哔」声，默认开启
+                    integator.setBarcodeImageEnabled(false);
+                    integator.set_is_Continuous_Scan(false);
+                    integator.setCaptureActivity(Scan_Single_Activity.class);
+                    integator.initiateScan();
+
+                }
+            }.start();
+        }
+
+        // 连续扫码
+        @JavascriptInterface
+        public void ContinuousScan() {
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    capture.is_Continuous_Scan = true;
+                    capture.onResume();
+                    scan_rt.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+
+        // 取消连续扫码
+        @JavascriptInterface
+        public void CancelScan() {
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+//                      android.view.ViewGroup.LayoutParams pp = scan_rt.getLayoutParams();
+//                      pp.height = 80;
+//                      scan_rt.setLayoutParams(pp);
+                    scan_rt.setVisibility(View.INVISIBLE);
+                    capture.onPause();
+                }
+            });
         }
 
         @JavascriptInterface
@@ -333,7 +371,7 @@ public class ScanActivity extends CaptureActivity {
 
         Log.d("LM", result);
 
-        String url = "javascript:QRScanAjax('" + "234455" + "')";
+        String url = "javascript:QRScanAjax('" + result + "')";
         ScanActivity.mWebView.loadUrl(url);
 
         new Thread() {
@@ -386,11 +424,6 @@ public class ScanActivity extends CaptureActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return barcodeScannerView.onKeyDown(keyCode, event) || super.onKeyDown(keyCode, event);
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         Log.d("LM", "onActivityResult: ----");
@@ -434,4 +467,41 @@ public class ScanActivity extends CaptureActivity {
             return;
         }
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+
+            String curURL = mWebView.getUrl();
+            String orgURL = mWebView.getOriginalUrl();
+            if (curURL.equals("file:///android_asset/apps/H5A4057B2/www/index.html#/")) {
+
+                Log.d("LM", "禁止返回上一页1：" + curURL);
+                moveTaskToBack(true);
+                return true;
+            }
+            // 首页
+            String Index = "file:///android_asset/apps/H5A4057B2/www/index.html#/Index";
+            // 任务
+            String Waybill = "file:///android_asset/apps/H5A4057B2/www/index.html#/Waybill";
+            // 我的
+            String HomeIndex = "file:///android_asset/apps/H5A4057B2/www/index.html#/HomeIndex";
+
+            // 主菜单时不允许返回上一页
+            if (
+                    curURL.indexOf(Index + "?") != -1 || curURL.equals(Index) ||
+                            curURL.indexOf(Waybill + "?") != -1 || curURL.equals(Waybill) ||
+                            curURL.indexOf(HomeIndex + "?") != -1 || curURL.equals(HomeIndex)
+            ) {
+
+                Log.d("LM", "禁止返回上一页2：" + curURL);
+                moveTaskToBack(true);
+                return true;
+            }
+            mWebView.goBack();
+            return true;
+        }
+        return barcodeScannerView.onKeyDown(keyCode, event) || super.onKeyDown(keyCode, event);
+    }
+
 }
