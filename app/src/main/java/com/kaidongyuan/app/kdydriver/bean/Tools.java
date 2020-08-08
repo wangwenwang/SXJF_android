@@ -22,7 +22,7 @@ import android.widget.Toast;
 import com.kaidongyuan.app.basemodule.utils.nomalutils.SystemUtil;
 import com.kaidongyuan.app.basemodule.widget.MLog;
 import com.kaidongyuan.app.kdydriver.constants.Constants;
-import com.kaidongyuan.app.kdydriver.ui.activity.ScanActivity;
+import com.kaidongyuan.app.kdydriver.ui.activity.hbx;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -167,7 +167,7 @@ public class Tools{
 			//获取到文件的大小
 			pd.setMax(conn.getContentLength() / 1000 / 1000);
 			InputStream is = conn.getInputStream();
-			File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), ScanActivity.ZipFileName);
+			File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), hbx.ZipFileName);
 			FileOutputStream fos = new FileOutputStream(file);
 			BufferedInputStream bis = new BufferedInputStream(is);
 			byte[] buffer = new byte[1024];
@@ -279,7 +279,7 @@ public class Tools{
 			d = sdf.parse(strTime);
 		} catch (java.text.ParseException e) {
 			e.printStackTrace();
-			Toast.makeText(ScanActivity.mContext, e.toString(), Toast.LENGTH_SHORT).show();
+			Toast.makeText(hbx.mContext, e.toString(), Toast.LENGTH_SHORT).show();
 		}
 		returnMillis = d.getTime();
 		return returnMillis;
@@ -308,7 +308,7 @@ public class Tools{
             list.add("百度地图");
         }
 
-        PromptDialog promptDialog = new PromptDialog((Activity) ScanActivity.mContext);
+        PromptDialog promptDialog = new PromptDialog((Activity) hbx.mContext);
         promptDialog.getDefaultBuilder().touchAble(true).round(3).loadingDuration(3000);
 
         PromptButton cancle = new PromptButton("取消", null);
@@ -660,7 +660,7 @@ public class Tools{
     public static void setAppLastTimeVersion(Context mContext) {
 
         SharedPreferences pre_appinfo = mContext.getSharedPreferences("w_AppInfo", MODE_MULTI_PROCESS);
-        pre_appinfo.edit().putString("LastTimeVersion", ScanActivity.local_Version).commit();
+        pre_appinfo.edit().putString("LastTimeVersion", hbx.mAppVersion).commit();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
