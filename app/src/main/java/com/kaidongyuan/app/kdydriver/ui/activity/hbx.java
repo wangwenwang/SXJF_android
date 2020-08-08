@@ -26,6 +26,8 @@ import com.allenliu.versionchecklib.v2.AllenVersionChecker;
 import com.allenliu.versionchecklib.v2.builder.UIData;
 import com.baidu.location.LocationClient;
 import com.baidu.mapapi.SDKInitializer;
+import com.journeyapps.barcodescanner.CaptureManager;
+import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 import com.kaidongyuan.app.basemodule.utils.nomalutils.MPermissionsUtil;
 
 import android.Manifest;
@@ -53,6 +55,7 @@ import android.support.v4.content.FileProvider;
 import android.view.Gravity;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
+import android.widget.RelativeLayout;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -137,12 +140,25 @@ public class hbx extends BaseFragmentActivity implements AsyncHttpCallback {
 
     private Intent mLocationIntent;
 
+    private CaptureManager capture;
+    private DecoratedBarcodeView barcodeScannerView;
+    RelativeLayout scan_rt;  // 扫码控件布局
+
     @SuppressLint("JavascriptInterface")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.scan);
         mContext = this;
+
+        barcodeScannerView = (DecoratedBarcodeView) findViewById(R.id.dbv_custom);
+
+        capture = new CaptureManager(this, barcodeScannerView);
+        capture.initializeFromIntent(getIntent(), savedInstanceState);
+
+        scan_rt = (RelativeLayout) findViewById(R.id.scan_rt);
+        scan_rt.setVisibility(View.INVISIBLE);
+        capture.onPause();
 
 //        requestReadPhonePermission();
 //        boolOpenCarmer();
@@ -294,6 +310,56 @@ public class hbx extends BaseFragmentActivity implements AsyncHttpCallback {
         getApplicationContext().startService(mLocationIntent);
 
         initHandler();
+
+        capture.setResultCallBack(new CaptureManager.ResultCallBack() {
+            @Override
+            public void callBack(int requestCode, int resultCode, Intent intent) {
+                IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+                if (null != result && null != result.getContents()) {
+                    showDialog(result.getContents());
+                    new Thread() {
+                        public void run() {
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                }
+                            });
+                        }
+                    }.start();
+                }
+            }
+        });
+        capture.decode();
+    }
+
+    public void showDialog(String result) {
+        // 弹出dialog的代码略...
+
+        Log.d("LM", result);
+
+        String url = "javascript:QRScanAjax('" + result + "')";
+        hbx.mWebView.loadUrl(url);
+
+        new Thread() {
+            public void run() {
+                try {
+                    sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        // 重新拉起扫描
+                        capture.onResume();
+                        capture.decode();
+                    }
+                });
+            }
+        }.start();
     }
 
     private void requestReadPhonePermission() {
@@ -619,11 +685,44 @@ public class hbx extends BaseFragmentActivity implements AsyncHttpCallback {
                 integator.setCameraId(0);
                 integator.setBeepEnabled(true); //扫描成功的「哔哔」声，默认开启
                 integator.setBarcodeImageEnabled(false);
-                integator.setCaptureActivity(ScanActivity.class);
+                integator.set_is_Continuous_Scan(false);
+                integator.setCaptureActivity(Scan_Single_Activity.class);
                 integator.initiateScan();
 
                 }
             }.start();
+        }
+
+        // 连续扫码
+        @JavascriptInterface
+        public void ContinuousScan() {
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    capture.is_Continuous_Scan = true;
+                    capture.onResume();
+                    scan_rt.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+
+        // 取消连续扫码
+        @JavascriptInterface
+        public void CancelScan() {
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+//                      android.view.ViewGroup.LayoutParams pp = scan_rt.getLayoutParams();
+//                      pp.height = 80;
+//                      scan_rt.setLayoutParams(pp);
+                    scan_rt.setVisibility(View.INVISIBLE);
+                    capture.onPause();
+                }
+            });
         }
 
         @JavascriptInterface
