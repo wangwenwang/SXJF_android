@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "9011931",
+      "name": "异常",
+      "font_class": "yichang",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
       "icon_id": "740888",
       "name": "机场",
       "font_class": "jiesongjifuwu",
