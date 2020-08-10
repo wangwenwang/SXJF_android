@@ -1139,6 +1139,9 @@ public class hbx extends BaseFragmentActivity implements AsyncHttpCallback {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        capture.onPause();
+        capture.onResume();
+
         Log.d("LM", "onActivityResult: ----");
 
         IntentResult intentresult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
