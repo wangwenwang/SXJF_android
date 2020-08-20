@@ -746,7 +746,7 @@ public class hbx extends BaseFragmentActivity implements AsyncHttpCallback {
                 @Override
                 public void run() {
 
-                    barcodeScannerView.setTorchOn();
+                    barcodeScannerView.setTorchOff();
                 }
             });
         }
