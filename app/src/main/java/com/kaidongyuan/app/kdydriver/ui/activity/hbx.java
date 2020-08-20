@@ -725,6 +725,32 @@ public class hbx extends BaseFragmentActivity implements AsyncHttpCallback {
             });
         }
 
+        // 开启闪光灯
+        @JavascriptInterface
+        public void setTorchEnabled_true() {
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    barcodeScannerView.setTorchOn();
+                }
+            });
+        }
+
+        // 关闭闪光灯
+        @JavascriptInterface
+        public void setTorchEnabled_false() {
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    barcodeScannerView.setTorchOn();
+                }
+            });
+        }
+
         @JavascriptInterface
         public  void updateAPP(){
 
