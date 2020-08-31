@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1727454",
+      "name": "220闪光灯",
+      "font_class": "shanguangdeng",
+      "unicode": "e8c7",
+      "unicode_decimal": 59591
+    },
+    {
+      "icon_id": "775396",
+      "name": "历史记录",
+      "font_class": "lishijilu",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
+      "icon_id": "10403834",
+      "name": "禁用闪光灯",
+      "font_class": "jinyongshanguangdeng",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "10403835",
+      "name": "自动闪光灯",
+      "font_class": "zidongshanguangdeng",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
       "icon_id": "9011931",
       "name": "异常",
       "font_class": "yichang",

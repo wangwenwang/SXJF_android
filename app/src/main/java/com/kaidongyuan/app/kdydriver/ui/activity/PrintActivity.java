@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,6 +22,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.zxing.BarcodeFormat;
@@ -30,8 +32,16 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import com.kaidongyuan.app.basemodule.interfaces.AsyncHttpCallback;
+import com.kaidongyuan.app.basemodule.utils.nomalutils.NetworkUtils;
+import com.kaidongyuan.app.basemodule.widget.MLog;
 import com.kaidongyuan.app.basemodule.widget.loadingDialog.MyLoadingDialog;
 import com.kaidongyuan.app.kdydriver.R;
+import com.kaidongyuan.app.kdydriver.bean.Tools;
+import com.kaidongyuan.app.kdydriver.constants.Constants;
+import com.kaidongyuan.app.kdydriver.httpclient.OrderAsyncHttpClient;
+import com.kaidongyuan.app.kdydriver.ui.base.BaseActivity;
+import com.kaidongyuan.app.kdydriver.ui.base.BaseFragmentActivity;
 
 //打印
 import zpSDK.zpSDK.*;
@@ -45,12 +55,14 @@ import android.view.Menu;
 
 import android.graphics.Canvas;
 
-public class PrintActivity extends Activity{
+public class PrintActivity extends BaseActivity implements AsyncHttpCallback{
 
     protected MyLoadingDialog myLoadingDialog;
     public static BluetoothAdapter myBluetoothAdapter;
     public String SelectedBDAddress;
     public static Context mContext;
+    public OrderAsyncHttpClient mClient;
+    private final String Tag_Get_Locations = "Update_Print_Count";
 
     StatusBox statusBox;
     /**
@@ -90,6 +102,7 @@ public class PrintActivity extends Activity{
         };
 
         mContext = this;
+        mClient = new OrderAsyncHttpClient(PrintActivity.this, this);
         Intent intent1 = getIntent();
         json_print = intent1.getStringExtra("omsNo");
 
@@ -144,7 +157,12 @@ public class PrintActivity extends Activity{
         });
 
     }
+    @Override
+    public void postSuccessMsg(String msg, String request_tag) {
 
+        Log.d("LM", "标签" + request_tag + "请求成功：" + msg);
+
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -190,12 +208,26 @@ public class PrintActivity extends Activity{
             });
             return;
         }
+
         try{
+
             json_array_data = JSONArray.parseArray(json_print);
 
             JSONObject orderInfo = (JSONObject) json_array_data.get(0);
 
             view =  getLayoutInflater().inflate(R.layout.print_layout, null);
+
+            // 记录是否打印和打印次数
+            Map<String, String> params = new HashMap<String, String>();
+            params.put("omsNo", orderInfo.getString("omsNo"));
+
+            Map<String, String> param = new HashMap<String, String>();
+
+            param.put("params", JSONObject.toJSONString(params));
+//            mClient.setShowToast(false);
+            mClient.sendRequest(Constants.URL.SAAS_API_BASE + "updatePrintCount.do", param, Tag_Get_Locations,false);
+
+            Log.d("LM", "记录打印次数2"+param );
 
             //  生成二维码
             ImageView imageviewqrcode45 = (ImageView) view.findViewById(R.id.imageviewqrcode);
@@ -276,6 +308,14 @@ public class PrintActivity extends Activity{
             //   收货地址 小联
             TextView receivePartyAddr11 = (TextView) view.findViewById(R.id.receivePartyAddr11);
             receivePartyAddr11.setText(orderInfo.getString("receicePartyDistricict") +"   "+ orderInfo.getString("receivePartyAddr1"));
+
+            // 客户业务类型
+            TextView customerBusinessType =  (TextView) view.findViewById(R.id.customerBusinessType);
+            customerBusinessType.setText(orderInfo.getString("customerBusinessType"));
+
+            // 客户业务类型 小联
+            TextView customerBusinessType1 =  (TextView) view.findViewById(R.id.customerBusinessType1);
+            customerBusinessType1.setText(orderInfo.getString("customerBusinessType"));
 
             //   货物名称
             TextView productname = (TextView) view.findViewById(R.id.textView182);
@@ -360,7 +400,7 @@ public class PrintActivity extends Activity{
 
             scanLabelItem = (JSONObject) scanLabelInfo.get(i);
 
-           //  生成条形码
+            //  生成条形码
             ImageView imageviewbarcode = (ImageView) view.findViewById(R.id.imageviewbarcode);
 
             Bitmap barcodebitmap = createBarcode(scanLabelItem.getString("productNo"),400);
@@ -528,6 +568,18 @@ public class PrintActivity extends Activity{
 
         //二合一面单
         viewTwo = getLayoutInflater().inflate(R.layout.print_layouttwoinone, null);
+
+        // 记录是否打印和打印次数
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("omsNo", orderInfo12.getString("omsNo"));
+
+        Map<String, String> param = new HashMap<String, String>();
+
+        param.put("params", JSONObject.toJSONString(params));
+//            mClient.setShowToast(false);
+        mClient.sendRequest(Constants.URL.SAAS_API_BASE + "updatePrintCount.do", param, Tag_Get_Locations,false);
+
+        Log.d("LM", "记录打印次数2"+param );
 
         //   货运单号  aviationMasterNo
         TextView twoaviationmasterno = (TextView) viewTwo.findViewById(R.id.aviationmasterno);
@@ -771,6 +823,18 @@ public class PrintActivity extends Activity{
 
         //二合一面单
         viewTwoother = getLayoutInflater().inflate(R.layout.print_layouttwoinoneother, null);
+
+        // 记录是否打印和打印次数
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("omsNo", orderInfo12.getString("omsNo"));
+
+        Map<String, String> param = new HashMap<String, String>();
+
+        param.put("params", JSONObject.toJSONString(params));
+//            mClient.setShowToast(false);
+        mClient.sendRequest(Constants.URL.SAAS_API_BASE + "updatePrintCount.do", param, Tag_Get_Locations,false);
+
+        Log.d("LM", "记录打印次数2"+param );
 
         //   货运单号  aviationMasterNo
         TextView twoaviationmasterno = (TextView) viewTwoother.findViewById(R.id.aviationmasterno);
@@ -1019,7 +1083,7 @@ public class PrintActivity extends Activity{
         return true;
     }
 
-//    @Override
+    //    @Override
     public void showLoadingDialog() {
         if (myLoadingDialog == null) {
             myLoadingDialog = new MyLoadingDialog(this);
@@ -1028,7 +1092,7 @@ public class PrintActivity extends Activity{
         myLoadingDialog.showDialog();
     }
 
-//    @Override
+    //    @Override
     public void cancelLoadingDialog() {
         if (myLoadingDialog != null && myLoadingDialog.isShowing()) {
             myLoadingDialog.dismiss();

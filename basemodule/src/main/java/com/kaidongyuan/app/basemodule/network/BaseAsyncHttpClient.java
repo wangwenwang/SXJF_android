@@ -254,13 +254,19 @@ public abstract class BaseAsyncHttpClient implements IAsyncHttpLient{
         @Override
         public void onResponse(String response, int id) {
 //            Log.d("LM", "response: " + response);
-            activityListener.cancelLoadingDialog();
+//            activityListener.cancelLoadingDialog();
+            if (need_show_dialog) {
+                activityListener.cancelLoadingDialog();
+            }
             MLog.i("OkHttpUtils MyStringCallBack:"+response);
             postMsg(response, request_tag);
         }
         @Override
         public void onError(Call call, Exception e, int id) {
-            activityListener.cancelLoadingDialog();
+//            activityListener.cancelLoadingDialog();
+            if (need_show_dialog) {
+                activityListener.cancelLoadingDialog();
+            }
             //----------------------------------------------------------------------------------------------------------
             if(mErrorListener!=null){
                 mErrorListener.handleErrorListener();
@@ -297,7 +303,10 @@ public abstract class BaseAsyncHttpClient implements IAsyncHttpLient{
 
         @Override
         public void onError(Call call, Exception e, int id) {
-            activityListener.cancelLoadingDialog();
+//            activityListener.cancelLoadingDialog();
+            if (need_show_dialog) {
+                activityListener.cancelLoadingDialog();
+            }
             //----------------------------------------------------------------------------------------------------------
             if(mErrorListener!=null){
                 mErrorListener.handleErrorListener();
@@ -319,7 +328,10 @@ public abstract class BaseAsyncHttpClient implements IAsyncHttpLient{
 
         @Override
         public void onResponse(File response, int id) {
-            activityListener.cancelLoadingDialog();
+//            activityListener.cancelLoadingDialog();
+            if (need_show_dialog) {
+                activityListener.cancelLoadingDialog();
+            }
             MLog.i("OkHttpUtils MyStringCallBack:"+response);
             /**
              * 在文件下载中以文件名为Tag,以文件路径为返回的String值

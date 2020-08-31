@@ -1,11 +1,13 @@
 package com.kaidongyuan.app.kdydriver.ui.activity;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -157,6 +159,25 @@ public class hbx extends BaseFragmentActivity implements AsyncHttpCallback {
         capture.initializeFromIntent(getIntent(), savedInstanceState);
 
         scan_rt = (RelativeLayout) findViewById(R.id.scan_rt);
+
+        android.view.ViewGroup.LayoutParams pp = scan_rt.getLayoutParams();
+
+        Resources resources = this.getResources();
+        DisplayMetrics dm = resources.getDisplayMetrics();
+//        float density1 = dm.density;
+//        int width3 = dm.widthPixels;
+        int height3 = dm.heightPixels;
+        //标准宽度 720  高度348
+
+        Log.d("LM", "屏幕高度: " + height3);
+
+        pp.height = height3*310/1280;
+        scan_rt.setLayoutParams(pp);
+
+        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) scan_rt.getLayoutParams();
+        lp.topMargin = height3*80/1280;
+        scan_rt.setLayoutParams(lp);
+
         scan_rt.setVisibility(View.INVISIBLE);
         capture.onPause();
 

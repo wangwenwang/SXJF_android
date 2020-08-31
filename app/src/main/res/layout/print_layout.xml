@@ -376,11 +376,11 @@
                                         android:orientation="vertical">
 
                                         <TextView
-                                            android:id="@+id/textView26"
+                                            android:id="@+id/customerBusinessType"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center"
-                                            android:text="限时24"
+                                            android:text=""
                                             android:textColor="#000"
                                             android:textSize="3.2mm"
                                             android:textStyle="bold" />
@@ -1309,12 +1309,12 @@
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:id="@+id/textView25"
+                                    android:id="@+id/customerBusinessType1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_weight="1"
-                                    android:text="限时24"
+                                    android:text=""
                                     android:textColor="#000"
                                     android:textSize="3mm" />
                             </LinearLayout>

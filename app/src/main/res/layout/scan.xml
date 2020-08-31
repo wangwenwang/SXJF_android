@@ -17,8 +17,8 @@
     <RelativeLayout
         android:id="@+id/scan_rt"
         android:layout_width="match_parent"
+        android:layout_marginTop="85px"
         android:layout_height="330px"
-        android:layout_marginTop="89px"
         android:orientation="vertical" >
 
         <SurfaceView
