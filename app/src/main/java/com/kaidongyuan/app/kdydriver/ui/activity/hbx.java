@@ -832,28 +832,21 @@ public class hbx extends BaseFragmentActivity implements AsyncHttpCallback {
 
                         Toast.makeText(mContext, "升级包不存在", Toast.LENGTH_SHORT).show();
                     } else {
-
-//                        Uri fileUri = null;
-//
-//                        if (Build.VERSION.SDK_INT >= 24) {
-//                            fileUri = FileProvider.getUriForFile(mContext, "com.cy_scm.tms_android.fileprovider", file);
-//
-//                        } else {
-//                            fileUri = Uri.fromFile(file);
-//                        }
-//
-//                        String type = "application/vnd.android.package-archive";//.apk 的 mime 名
-//                        Intent intent = new Intent(Intent.ACTION_VIEW);
-//                        intent.setDataAndType(fileUri, type);
-//                        mContext.startActivity(intent);
-//                        mContext.startActivity(intent);
-
-
-                        Uri uri = Uri.fromFile(file);
-                        String type = "application/vnd.android.package-archive";//.apk 的 mime 名
                         Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.addCategory(Intent.CATEGORY_DEFAULT);
+                        Uri uri;
+                        if (Build.VERSION.SDK_INT >= 24) {//android 7.0以上
+                            uri =  FileProvider.getUriForFile(mContext, "com.cy_scm.tms_android.fileprovider", file);
+                        } else {
+                            uri = Uri.fromFile(file);
+                        }
+                        String type = "application/vnd.android.package-archive";
                         intent.setDataAndType(uri, type);
-                        mContext.startActivity(intent);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        if (Build.VERSION.SDK_INT >= 24) {
+                            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        }
+                        startActivity(intent);
                     }
                     mNotificationManager.cancel(0);
                 } else if (percent==-1) {
